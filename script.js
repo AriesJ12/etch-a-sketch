@@ -2,6 +2,9 @@ createContainer();
 
 drawGrid(16);
 
+const gridEvent = document.querySelectorAll(".column");
+gridEvent.forEach(function(box){box.addEventListener("click", function(event) {console.log(event.target.classList.add("clicked"))})});
+
 function createContainer() {
   const body = document.querySelector("body");
   const mainContainer = document.createElement("div");

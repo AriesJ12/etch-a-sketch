@@ -25,3 +25,8 @@ div
     height: 30rem;
     width: 30rem;
 }
+
+.clicked
+{
+    background-color: #121212;
+}
