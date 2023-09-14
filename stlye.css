@@ -22,8 +22,14 @@ div
 {
     display: flex;
     flex-direction: column;
-    height: 30rem;
-    width: 30rem;
+    height: 500px;
+    width: 500px;
+}
+
+#grid-container
+{
+    width: 500px;
+    height: 500px;
 }
 
 .clicked

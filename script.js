@@ -1,15 +1,18 @@
-createContainer();
+let grid = 16;
 
-drawGrid(16);
+createContainer();
+drawGrid(grid);
 
 const gridEvent = document.querySelectorAll(".column");
 gridEvent.forEach(function(box){box.addEventListener("click", function(event) {console.log(event.target.classList.add("clicked"))})});
 
+
+
 function createContainer() {
-  const body = document.querySelector("body");
+  const gridContainer = document.querySelector("#grid-container");
   const mainContainer = document.createElement("div");
   mainContainer.classList.add("container");
-  body.appendChild(mainContainer);
+  gridContainer.appendChild(mainContainer);
 }
 
 function drawGrid(GRID_NUMBER) {
