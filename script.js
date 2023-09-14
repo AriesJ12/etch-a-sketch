@@ -60,3 +60,32 @@ function declareEventsColumn() {
     box.addEventListener("mouseenter", changeColor);
   });
 }
+
+
+function determineColor()
+{
+  let color;
+  const button = document.querySelector(".choice-color.active");
+  
+  const CHOICE = button.dataset.choice;
+  
+  if(CHOICE ==="rgb")
+  {
+    color = randomColorGenerator();
+  }
+  else if(CHOICE === "eraser")
+  {
+    color = "#FFFFFF";
+  }
+  else
+  {
+    color = "#000000";
+  }
+
+  return color;
+}
+
+function randomColorGenerator()
+{
+  return "#123456";
+}

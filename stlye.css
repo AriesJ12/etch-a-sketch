@@ -64,3 +64,8 @@ button
     align-items: center;
     gap: 1rem;
 }
+
+.active
+{
+    border: thin blue solid;
+}
