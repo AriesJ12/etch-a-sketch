@@ -3,26 +3,22 @@ let grid = 16;
 createContainer();
 drawGrid(grid);
 
-const gridEvent = document.querySelectorAll(".column");
-let mouseDown =false;
+let mouseDown = false;
+declareEventsColumn();
 
-gridEvent.forEach(function(box){box.addEventListener("mousedown", function(event) {mouseDown = true; changeColor(event)})});
-
-gridEvent.forEach(function(box){box.addEventListener("mouseup", function() {mouseDown = false;})});
-
-gridEvent.forEach(function(box){box.addEventListener("mouseenter", changeColor)});
-
-
-
+//create the container
 function createContainer() {
   const gridContainer = document.querySelector("#grid-container");
   const mainContainer = document.createElement("div");
   mainContainer.classList.add("container");
   gridContainer.appendChild(mainContainer);
-  
-  mainContainer.addEventListener("mouseleave", function () {mouseDown=false;});
+
+  mainContainer.addEventListener("mouseleave", function () {
+    mouseDown = false;
+  });
 }
 
+//draw grid
 function drawGrid(GRID_NUMBER) {
   const mainContainer = document.querySelector(".container");
   for (let i = 1; i <= GRID_NUMBER; i++) {
@@ -37,13 +33,30 @@ function drawGrid(GRID_NUMBER) {
     }
   }
 }
-
-function changeColor(event)
-{
-  console.log(event);
-  if(mouseDown)
-  {
-    event.target.style.backgroundColor = "#000000";
+//change the color of a div inside the container
+function changeColor(event) {
+  let color = determineColor();
+  if (mouseDown) {
+    event.target.style.backgroundColor = color;
   }
 }
 
+function declareEventsColumn() {
+  const gridEvent = document.querySelectorAll(".column");
+  gridEvent.forEach(function (box) {
+    box.addEventListener("mousedown", function (event) {
+      mouseDown = true;
+      changeColor(event);
+    });
+  });
+
+  gridEvent.forEach(function (box) {
+    box.addEventListener("mouseup", function () {
+      mouseDown = false;
+    });
+  });
+
+  gridEvent.forEach(function (box) {
+    box.addEventListener("mouseenter", changeColor);
+  });
+}
