@@ -4,7 +4,13 @@ createContainer();
 drawGrid(grid);
 
 const gridEvent = document.querySelectorAll(".column");
-gridEvent.forEach(function(box){box.addEventListener("click", function(event) {console.log(event.target.classList.add("clicked"))})});
+let mouseDown =false;
+
+gridEvent.forEach(function(box){box.addEventListener("mousedown", function(event) {mouseDown = true; changeColor(event)})});
+
+gridEvent.forEach(function(box){box.addEventListener("mouseup", function() {mouseDown = false;})});
+
+gridEvent.forEach(function(box){box.addEventListener("mouseenter", changeColor)});
 
 
 
@@ -29,3 +35,13 @@ function drawGrid(GRID_NUMBER) {
     }
   }
 }
+
+function changeColor(event)
+{
+  console.log(event);
+  if(mouseDown)
+  {
+    event.target.style.backgroundColor = "#000000";
+  }
+}
+
