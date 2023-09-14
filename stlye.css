@@ -32,7 +32,8 @@ div
     height: 500px;
 }
 
-.clicked
+.section
 {
-    background-color: #121212;
+    display: flex;
+    justify-content: space-evenly;
 }
