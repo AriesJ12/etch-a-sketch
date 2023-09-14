@@ -19,6 +19,8 @@ function createContainer() {
   const mainContainer = document.createElement("div");
   mainContainer.classList.add("container");
   gridContainer.appendChild(mainContainer);
+  
+  mainContainer.addEventListener("mouseleave", function () {mouseDown=false;});
 }
 
 function drawGrid(GRID_NUMBER) {

@@ -1,6 +1,6 @@
 div
 {
-    border: thin black solid;
+    cursor:default
 }
 *
 {
@@ -11,6 +11,7 @@ div
 {
     flex-grow: 1;
     cursor: default;
+    user-select:none
 }
 
 .row
@@ -25,6 +26,9 @@ div
     flex-direction: column;
     height: 500px;
     width: 500px;
+
+    border: thin black solid;
+    border-radius: 3px;
 }
 
 #grid-container
