@@ -82,7 +82,8 @@ function determineColor() {
   const CHOICE = button.dataset.choice;
 
   if (CHOICE === "rgb") {
-    color = randomColorGenerator();
+    //generate random color
+    color = `#${Math.floor(Math.random()*16777215).toString(16)}`;
   } else if (CHOICE === "eraser") {
     color = "#FFFFFF";
   } else {
@@ -92,11 +93,6 @@ function determineColor() {
   return color;
 }
 
-
-//generate random color
-function randomColorGenerator() {
-  return "#123456";
-}
 
 //toggle active class on menu
 function toggleActiveChoice(event) {
