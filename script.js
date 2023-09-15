@@ -6,6 +6,8 @@ drawGrid(grid);
 let mouseDown = false;
 declareEventsColumn();
 
+declareEventsChoiceButton();
+
 //create the container
 function createContainer() {
   const gridContainer = document.querySelector("#grid-container");
@@ -41,6 +43,7 @@ function changeColor(event) {
   }
 }
 
+//declare the events column(needed as a function because of deletion and recreation of columns)
 function declareEventsColumn() {
   const gridEvent = document.querySelectorAll(".column");
   gridEvent.forEach(function (box) {
@@ -61,31 +64,48 @@ function declareEventsColumn() {
   });
 }
 
+//events for menu
+function declareEventsChoiceButton() {
 
-function determineColor()
-{
+  const choiceButtons = document.querySelectorAll(".choice-color");
+
+  choiceButtons.forEach(function (but) {
+    but.addEventListener("click", toggleActiveChoice);
+  });
+}
+
+//determine the color of the lines
+function determineColor() {
   let color;
   const button = document.querySelector(".choice-color.active");
-  
+
   const CHOICE = button.dataset.choice;
-  
-  if(CHOICE ==="rgb")
-  {
+
+  if (CHOICE === "rgb") {
     color = randomColorGenerator();
-  }
-  else if(CHOICE === "eraser")
-  {
+  } else if (CHOICE === "eraser") {
     color = "#FFFFFF";
-  }
-  else
-  {
+  } else {
     color = "#000000";
   }
 
   return color;
 }
 
-function randomColorGenerator()
-{
+
+//generate random color
+function randomColorGenerator() {
   return "#123456";
+}
+
+//toggle active class on menu
+function toggleActiveChoice(event) {
+  const choiceButtons = document.querySelectorAll(".choice-color");
+  const ACTIVE = "active";
+
+  choiceButtons.forEach(function (but) {
+    but.classList.remove(ACTIVE);
+  });
+
+  event.target.classList.add("active");
 }
