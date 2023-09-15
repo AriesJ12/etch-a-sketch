@@ -1,12 +1,9 @@
-let grid = 16;
-
-createContainer();
-drawGrid(grid);
-
+//needed for checking if mousedown(for drawing)
 let mouseDown = false;
-declareEventsColumn();
 
-declareEventsChoiceButton();
+//for starting
+reDrawGrid();
+declareEventsMenuButton();
 
 //create the container
 function createContainer() {
@@ -20,8 +17,8 @@ function createContainer() {
   });
 }
 
-//draw grid
-function drawGrid(GRID_NUMBER) {
+//responsible for drawing the grid
+function drawGrid(GRID_NUMBER = document.querySelector("#grid").value) {
   const mainContainer = document.querySelector(".container");
   for (let i = 1; i <= GRID_NUMBER; i++) {
     const row = document.createElement("div");
@@ -35,6 +32,19 @@ function drawGrid(GRID_NUMBER) {
     }
   }
 }
+
+//responsible for deleting then creating the grid again
+function reDrawGrid() {
+  const container = document.querySelector(".container");
+
+  if (container) {
+    container.remove();
+  }
+  createContainer();
+  drawGrid();
+  declareEventsColumn();
+}
+
 //change the color of a div inside the container
 function changeColor(event) {
   let color = determineColor();
@@ -65,12 +75,25 @@ function declareEventsColumn() {
 }
 
 //events for menu
-function declareEventsChoiceButton() {
-
+function declareEventsMenuButton() {
+  //events for color
   const choiceButtons = document.querySelectorAll(".choice-color");
 
   choiceButtons.forEach(function (but) {
     but.addEventListener("click", toggleActiveChoice);
+  });
+
+  //events for redraw
+  const clear = document.querySelector("#clear");
+
+  const range = document.querySelector("#grid");
+  const label = document.querySelector("label[for = 'grid']");
+
+  clear.addEventListener("click", reDrawGrid);
+  range.addEventListener("change", reDrawGrid);
+
+  range.addEventListener("input", function () {
+    label.textContent = `${event.target.value}x${event.target.value}`;
   });
 }
 
@@ -83,7 +106,7 @@ function determineColor() {
 
   if (CHOICE === "rgb") {
     //generate random color
-    color = `#${Math.floor(Math.random()*16777215).toString(16)}`;
+    color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
   } else if (CHOICE === "eraser") {
     color = "#FFFFFF";
   } else {
@@ -92,7 +115,6 @@ function determineColor() {
 
   return color;
 }
-
 
 //toggle active class on menu
 function toggleActiveChoice(event) {
